@@ -1,18 +1,11 @@
 import { Card, CardContent, Typography, Chip, Stack, Box, Avatar } from '@mui/material';
 import { LocationOn, AttachMoney } from '@mui/icons-material';
-import { useRouter } from 'next/navigation';
 import avatarImg from '@/images/avatar.png';
 
-const JobCard = ({ job }: { job: any }) => {
-    const router = useRouter();
-
-    const handleJobClick = () => {
-        router.push(`/jobs/${job.job_id}`);
-    };
-
+const JobCard = ({ job, onSelect }: { job: any; onSelect: (job: any) => void }) => {
     return (
         <Card
-            onClick={handleJobClick}
+            onClick={() => onSelect(job)}
             sx={{
                 height: '100%',
                 borderRadius: 3,
@@ -28,16 +21,11 @@ const JobCard = ({ job }: { job: any }) => {
             }}
         >
             <CardContent sx={{ p: 3 }}>
-                {/* Header với Avatar và HOT badge */}
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Avatar
                             src={avatarImg.src}
-                            sx={{
-                                width: 40,
-                                height: 40,
-                                bgcolor: 'primary.main'
-                            }}
+                            sx={{ width: 40, height: 40, bgcolor: 'primary.main' }}
                         >
                             {job.company_name?.charAt(0) || 'C'}
                         </Avatar>
@@ -52,22 +40,19 @@ const JobCard = ({ job }: { job: any }) => {
                             bgcolor: '#ff4444',
                             color: 'white',
                             fontWeight: 'bold',
-                            fontSize: '0.75rem'
+                            fontSize: '0.75rem',
                         }}
                     />
                 </Box>
 
-                {/* Job Title */}
                 <Typography variant="h6" gutterBottom>
                     {job.title}
                 </Typography>
 
-                {/* Description */}
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
                     {job.description?.slice(0, 200)}...
                 </Typography>
 
-                {/* Salary with Icon */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                     <AttachMoney sx={{ fontSize: 18, color: 'success.main' }} />
                     <Typography variant="body2" fontWeight={600}>
@@ -75,7 +60,6 @@ const JobCard = ({ job }: { job: any }) => {
                     </Typography>
                 </Box>
 
-                {/* Location with Icon */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
                     <LocationOn sx={{ fontSize: 18, color: 'primary.main' }} />
                     <Typography variant="body2">
@@ -83,7 +67,6 @@ const JobCard = ({ job }: { job: any }) => {
                     </Typography>
                 </Box>
 
-                {/* Skills */}
                 <Stack direction="row" spacing={1} mt={1} flexWrap="wrap" useFlexGap>
                     {job.skills_required?.slice(0, 3).map((skill: any) => (
                         <Chip
@@ -94,7 +77,7 @@ const JobCard = ({ job }: { job: any }) => {
                             sx={{
                                 borderColor: 'primary.main',
                                 color: 'primary.main',
-                                fontSize: '0.75rem'
+                                fontSize: '0.75rem',
                             }}
                         />
                     ))}
@@ -105,7 +88,7 @@ const JobCard = ({ job }: { job: any }) => {
                             sx={{
                                 bgcolor: 'grey.100',
                                 color: 'text.secondary',
-                                fontSize: '0.75rem'
+                                fontSize: '0.75rem',
                             }}
                         />
                     )}
