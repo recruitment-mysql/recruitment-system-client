@@ -11,17 +11,6 @@ export default function EmployerSection() {
 
     return (
         <Box py={10} px={{ xs: 2, md: 6 }} bgcolor="#fafafa">
-            {/* Header */}
-            <Box sx={{ textAlign: 'center', mb: 4 }}>
-                <Typography variant="h4" fontWeight="bold" gutterBottom>
-                    Nhà tuyển dụng nổi bật
-                </Typography>
-                <Typography color="text.secondary" fontSize="1.125rem">
-                    Các nhà tuyển dụng hàng đầu dành cho bạn
-                </Typography>
-            </Box>
-
-            {/* Grid employer */}
             <Grid container spacing={3}>
                 {(employers as EmployerWithUser[]).map(({ employer, user }) => (
                     <Grid item key={employer.employer_id} xs={12} sm={6} md={4}>

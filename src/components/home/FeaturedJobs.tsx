@@ -14,18 +14,6 @@ export default function FeaturedJobs() {
 
     return (
         <Box sx={{ my: 5 }}>
-            {/* Header */}
-            <Box sx={{ textAlign: 'center', mb: 4 }}>
-                <Typography variant="h4" gutterBottom>
-                    Các cơ hội việc làm{' '}
-                        nổi bật
-                </Typography>
-                <Typography color="text.secondary" fontSize="1.125rem">
-                    Công việc hấp dẫn dành cho bạn
-                </Typography>
-            </Box>
-
-            {/* Job Grid - 2 columns */}
             <Grid container spacing={3}>
                 {jobs.map(job => (
                     <Grid item xs={12} md={6} key={job.job_id}>
